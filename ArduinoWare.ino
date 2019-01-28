@@ -1,22 +1,16 @@
-#include "Keyboard.h"
-
-#define VolUp 0xAF
+#include "HID-Project.h"
+#define mituruButton 2
 
 void setup() {
-  Keyboard.begin();
-  pinMode(2, INPUT_PULLUP);
+  pinMode(mituruButton, INPUT_PULLUP);
+  Consumer.begin();
 }
 
 void loop() {
-  if(digitalRead(2) == LOW){
-    for(int counter = 0; 0 < 100; counter++){
-        Keyboard.press(VolUp);
-        delay(100);
+  if (!digitalRead(mituruButton)) {
+    for(int counter = 0 ; 0 < 100 ; counter++){
+      Consumer.write(MEDIA_VOLUME_UP);
+      delay(10);
     }
-    Keyboard.releaseAll();
-
-    while(digitalRead(1) == LOW);
   }
-
-  delay(100);
 }
