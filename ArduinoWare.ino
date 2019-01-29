@@ -16,7 +16,7 @@ void loop() {
     ButtonCounter++;
   }
   
-  //解除用ボタンが3回押されたら制限モード解除
+  //解除用ボタンが3回押されたらモード切替
   if(ButtonCounter == 3){
     ProtectButton = false;
   }
@@ -24,8 +24,8 @@ void loop() {
   //メインボタンが押された時の動作
   if (!digitalRead(mituruButton)) {
     if(ProtectButton == false){
-      for(int counter = 0 ; 0 < 100 ; counter++){
-        Consumer.write(MEDIA_VOLUME_UP);  //制限モード解除時は音量を最大まで上げる
+      for(int counter = 0 ; 0 < 3 ; counter++){
+        Consumer.write(MEDIA_VOLUME_UP);  //制限モード解除時は音量を3段階上げる
         delay(10);
       }
     }else{
