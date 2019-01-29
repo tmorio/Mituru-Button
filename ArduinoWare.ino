@@ -1,36 +1,44 @@
 #include "HID-Project.h"
 #define mituruButton 2
-#define proButton 3
+#define proButton 9
 
 bool ProtectButton = true;
+bool Changed = false;
 int ButtonCounter = 0;
 
 void setup() {
   pinMode(mituruButton, INPUT_PULLUP);
+  pinMode(proButton, INPUT_PULLUP);
+  Serial.print("Ready!");
   Consumer.begin();
 }
 
 void loop() {
-  //制限解除用ボタン
-  if(!digitalRead(proButton) && ButtonCounter < 3){
+  if(!digitalRead(proButton)){
     ButtonCounter++;
+    delay(150);
   }
-  
-  //解除用ボタンが3回押されたらモード切替
-  if(ButtonCounter == 3){
+
+  if(ButtonCounter == 3 && Changed == false){
     ProtectButton = false;
+    Changed = true;
+    Serial.print("Changed Mode!");
   }
   
-  //メインボタンが押された時の動作
   if (!digitalRead(mituruButton)) {
     if(ProtectButton == false){
-      for(int counter = 0 ; 0 < 3 ; counter++){
-        Consumer.write(MEDIA_VOLUME_UP);  //制限モード解除時は音量を3段階上げる
-        delay(10);
-      }
+        for(int VolCount = 0; VolCount < 30 ; VolCount++){
+          Consumer.write(MEDIA_VOLUME_UP);
+          delay(10);
+          Consumer.releaseAll();
+          delay(10);
+        }
+        delay(1000);
     }else{
-        Consumer.write(MEDIA_VOLUME_UP);  //制限モード時は音量を1段階上げる
-        delay(100);
+        Consumer.write(MEDIA_VOLUME_UP);
+        delay(200);
+        Consumer.releaseAll();
     }
   }
+  Consumer.releaseAll();
 }
