@@ -10,7 +10,7 @@ void setup() {
 void loop() {
 
   if (!digitalRead(mituruButton)) {
-        for(int VolCount = 0; VolCount < 30 ; VolCount++){
+        for(int VolCount = 0; VolCount < 40 ; VolCount++){
           Consumer.write(MEDIA_VOLUME_UP);
           delay(10);
           Consumer.releaseAll();
