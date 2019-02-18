@@ -1,5 +1,5 @@
 #include "HID-Project.h"
-#define mituruButton 2
+#define mituruButton 16
 
 void setup() {
   pinMode(mituruButton, INPUT_PULLUP);
