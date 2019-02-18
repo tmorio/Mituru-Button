@@ -5,4 +5,4 @@
 ## 作り方
 [(第一話) 音量を一気に上げるだけのイタズラ専用ボタンを作ってみた](https://moritoworks.com/archives/1076)  
 [(第二話) 音量を一気に上げるだけのイタズラ専用ボタンを作ってみた](https://moritoworks.com/archives/1096)  
-続きは後ほど
+[(第三話 - 最終回) 音量を一気に上げるだけのイタズラ専用ボタンを作ってみた](https://moritoworks.com/archives/1122)  
